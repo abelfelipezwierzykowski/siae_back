@@ -6,18 +6,22 @@ import { AnimalsModule } from './animals/animals.module';
 import { UsersModule } from './users/users.module';
 import { AdoptionsModule } from './adoptions/adoptions.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
+import { config } from 'dotenv';
+
+config();
 
 @Module({
   imports: [
     TypeOrmModule.forRoot({
       type: 'postgres',
-      host: 'postgres_local',
-      port: 5432,
-      username: 'gb_one',
-      password: '9375',
-      database: 'siae',
+      host: process.env.DATABASE_HOST || 'postgres_local',
+      port: Number(process.env.DATABASE_PORT) || 5432,
+      username: process.env.DATABASE_USER || 'gb_one',
+      password: process.env.DATABASE_PASSWORD || '9375',
+      database: process.env.DATABASE_NAME || 'siae',
+      url: process.env.DATABASE_URL || undefined,
       autoLoadEntities: true,
-      synchronize: true,
+      synchronize: process.env.DATABASE_SYNC === 'false' ? false : true,
     }),
     AuthModule,
     UsersModule,
