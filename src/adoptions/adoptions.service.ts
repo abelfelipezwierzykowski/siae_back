@@ -1,4 +1,4 @@
-import { Injectable, NotFoundException } from '@nestjs/common';
+import { BadRequestException, Injectable, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { AdoptionRequest } from './entities/adoption-request.entity';
@@ -27,6 +27,9 @@ export class AdoptionsService {
     }
     if (!animal) {
       throw new NotFoundException('Animal não encontrado');
+    }
+    if (animal.status !== 'available') {
+      throw new BadRequestException('Animal não está disponível para adoção');
     }
 
     const request = this.adoptionRepository.create({
