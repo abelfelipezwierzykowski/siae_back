@@ -1,0 +1,36 @@
+{
+  "info": {
+    "name": "testeAPI",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "localhost:3000/auth/register",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n  \"name\": \"Abel Felipe\",\r\n  \"email\": \"abel@email.com\",\r\n  \"password\": \"12345678\",\r\n  \"phone\": \"(41) 99999-9999\",\r\n  \"address\": \"Rua das Flores, 123 - Curitiba/PR\"\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "localhost:3000/auth/register",
+          "host": ["localhost"],
+          "port": "3000",
+          "path": ["auth", "register"]
+        }
+      },
+      "response": []
+    }
+  ]
+}
